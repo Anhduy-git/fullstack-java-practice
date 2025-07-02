@@ -1,6 +1,7 @@
 import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,8 @@ export class LoginComponent implements OnInit {
   errorMessage : string = 'Invalid Credentials'
   invalidLogin : boolean = false;
 
+  constructor(private router: Router) {}
+
   ngOnInit() {
     console.log('LoginComponent initialized');
   }
@@ -22,6 +25,8 @@ export class LoginComponent implements OnInit {
   handleLogin() {
     console.log('Login attempted with:', this.username, this.password);
     if (this.username == 'duy' && this.password == 'chau') {
+      // redirect to welcome page
+      this.router.navigate(['welcome', this.username]);
       this.invalidLogin = false;
     } else {
       this.invalidLogin = true;
