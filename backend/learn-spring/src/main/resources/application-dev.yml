@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: learn-spring
+
+logging:
+  level:
+    org:
+      springframework: trace
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

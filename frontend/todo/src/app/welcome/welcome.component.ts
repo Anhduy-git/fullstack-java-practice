@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { WelcomeDataService } from '../service/data/welcome-data.service';
 
 @Component({
   selector: 'app-welcome',
@@ -11,6 +12,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 export class WelcomeComponent implements OnInit {
   title: string = 'Welcome to the Todo App!';
   name: string = '';
+  private service: WelcomeDataService = inject(WelcomeDataService);
 
   constructor(private route: ActivatedRoute) {
     // You can inject services here if needed
@@ -21,6 +23,10 @@ export class WelcomeComponent implements OnInit {
   ngOnInit() {
     console.log('WelcomeComponent initialized');
     this.name = this.route.snapshot.params['name']
+  }
+
+  getWelcomeMessage() {
+    this.service.executedHelloWorldBeanService();
   }
 
 }
